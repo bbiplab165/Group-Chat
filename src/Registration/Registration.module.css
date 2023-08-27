@@ -1,0 +1,30 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.main{
+    width: 40%;
+    height: auto;
+    border: solid 1px ;
+    /* margin-top: 5%; */
+}
+.main h3{
+    margin: 2.5%;
+    margin-left: 3%;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    padding:0 3%;
+}
+
+.container input{
+    margin-top:  2.5%;
+    margin-bottom: 3%;
+    height: 2rem;
+}
+/* .container label{
+    margin-top: 2%;
+} */
