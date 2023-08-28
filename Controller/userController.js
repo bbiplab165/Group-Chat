@@ -1,5 +1,6 @@
 const userModel=require('../models/userModel')
 const bcrypt=require('bcrypt')
+const jwt=require('jsonwebtoken')
 
 
 exports.createUser=async(req,res)=>{
@@ -24,5 +25,35 @@ exports.createUser=async(req,res)=>{
     catch(err){
         console.log(err);
         return res.status(500).json({message:err})
+    }
+}
+
+exports.login=async(req,res)=>{
+    try{
+        const {email,password}=req.body
+        const userData=await userModel.findOne({where:{email}})
+        console.log(userData.password);
+        if(userData.length==0)
+        {
+            return res.status(400).json({message:"User not found"})
+        }
+        bcrypt.compare(password,userData.password,(err,result)=>
+        {
+            if(result){
+                console.log("done");
+                const userId=userData.id
+                const token =jwt.sign({userId:userId},"hello")
+                console.log(token);
+                return res.status(200).json({message:"login successfull", token:token})
+            }
+            else if(err){
+                return res.status(200).json({message:err})
+            }
+        })
+
+    }
+    catch(err){
+        console.log(err);
+        return res.status(500).json({message:"Server Error"})
     }
 }
