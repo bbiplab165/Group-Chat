@@ -7,7 +7,7 @@
 }
 .login{
     width: 30%;   
-    height: 35%; 
+    /* height: 35%;  */
     border: solid 1px;
 }
 .login h2{
